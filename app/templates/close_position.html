@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 id="btn-dropdowns" class="page-header" style="margin:auto 10% auto 3%">
+    &nbsp&nbsp&nbsp&nbsp&nbsp新建爬虫
+</h3>
+
+<div class="container" style="position:float;margin:0 auto;margin-left:2.5%;">
+<form action="/close_position/{{item.ID}}" method="POST">
+    <!--期权代码-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">期权代码：</span>
+
+        <select class="form-control" name="OPTION_CODE" style="width: 20%;">
+            <option value="{{item.OPTION_CODE}}">{{item.OPTION_CODE}}</option>
+        </select>
+    </div><br>
+    <!--PRICE-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">&nbsp;&nbsp;&nbsp;&nbsp;平仓价&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" style="width: 60%;"  class="form-control" placeholder="平仓价" aria-describedby="sizing-addon2"  name="PRICE" >
+    </div><br>
+    <!--NUM-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">持仓量：{{item.NUM}}</span>
+        <input type="text" style="width: 60%;"  class="form-control" placeholder="平仓数量" aria-describedby="sizing-addon2"  name="NUM" >
+    </div><br>
+    <!--提交、取消 行-->
+    <div style="padding-left:3%;">
+        <table width="10%" align="left">
+        <tr>
+        <td><table width="100%" align="center">
+        <input  type="submit" class="btn btn-info" value=" 提交 ">
+        </table></td>
+        <td><table width="100%" align="left">
+         <a class="btn btn btn-danger" href='{{ url_for("strategy_position", id=item.STRATEGY_ID) }}'>取消</a>
+        </table></td>
+        </tr>
+        </table>
+    </div>
+</form>
+</div>
+{% endblock %}

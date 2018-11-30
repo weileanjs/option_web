@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 id="btn-dropdowns" class="page-header" style="margin:auto 10% auto 3%">
+    &nbsp&nbsp&nbsp&nbsp&nbsp新建爬虫
+</h3>
+
+<div class="container" style="margin:7px 10% auto 2%">
+<form action="/update_position/{{id}}" method="POST">
+    <!--期权代码-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">&nbsp;&nbsp;期权代码&nbsp;&nbsp;</span>
+        <select class="form-control" name="CALL_PUT" style="width: 15%;">
+            <option value={{item.CALL_PUT}}>{{item.CALL_PUT_NAME}}(当前)</option>
+            <option value=1>CALL</option>
+            <option value=-1>PUT</option>
+        </select>
+        <select class="form-control" name="MONTH" style="width: 15%;">
+            <option value={{item.MONTH}}>{{item.MONTH}}月(当前)</option>
+            {% for month in months %}
+            <option value={{month}}>{{month}}月</option>
+            {% endfor %}
+        </select>
+        <select class="form-control" name="EXPRICE" style="width: 15%;">
+            <option value={{item.CALL_PUT}}>{{item.EXPRICE}}(当前)</option>
+            {% for ex_price in ex_prices %}
+            <option value={{ex_price}}>{{ex_price}}</option>
+            {% endfor %}
+        </select>
+    </div><br>
+    <!--期权名称-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">&nbsp;&nbsp;期权名称&nbsp;&nbsp;</span>
+        <input type="text" style="width: 60%;"  class="form-control" value="{{item.OPTION_NAME}}" aria-describedby="sizing-addon2"  name="OPTION_NAME">
+    </div><br>
+    <!--PRICE-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">&nbsp;&nbsp;&nbsp;&nbsp;成交价&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" style="width: 60%;"  class="form-control" value="{{item.PRICE}}" aria-describedby="sizing-addon2"  name="PRICE" >
+    </div><br>
+    <!--NUM-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">&nbsp;&nbsp;成交数量&nbsp;&nbsp;</span>
+        <input type="text" style="width: 60%;"  class="form-control" value="{{item.NUM}}" aria-describedby="sizing-addon2"  name="NUM" >
+    </div><br>
+    <!--提交、取消 行-->
+    <div style="padding-left:3%;">
+        <table width="10%" align="left">
+        <tr>
+        <td><table width="100%" align="center">
+        <input type="hidden" name="edit" value="edit">
+        <input  type="submit" class="btn btn-info" value=" 提交 ">
+        </table></td>
+        <td><table width="100%" align="left">
+            <a class="btn btn btn-danger" href='{{ url_for("strategy_position", id=item.ID) }}'>取消</a>
+        </table></td>
+        </tr>
+        </table>
+    </div>
+</form>
+</div>
+{% endblock %}

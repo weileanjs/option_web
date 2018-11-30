@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script src="static/jquery-3.3.1.min.js">
+</script>
+
+<div class="container"  style="margin:7px 10% auto 7%">
+    <a href="/create_strategy"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建需求</a>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+    <tr>
+        <th>NAME</th>
+        <th>STATUS</th>
+        <th>CONTROL</th>
+    </tr>
+    {% for i in items %}
+    <tr >
+        <td style="width: 10%;" >{{ i.STRATEGY_NAME}}</a></td>
+        <td style="width: 10%;">xxxxxx</td>
+        <td style="width: 2%;">
+        <table width="100%" align="center">
+            <tr>
+            <td><table width="100%" align="center">
+            <form action="/myform" method='post'>
+            <input type="hidden" name="switch" value="start">
+            <input  type="submit" class="btn btn-sm btn-success" value=" 启动 ">
+            </form>
+            </table></td>
+            <td><table width="100%" align="center">
+            <form action="/myform" method='post'>
+            <input type="hidden" name="switch" value="stop">
+            <input  type="submit" class="btn btn-sm btn-danger" value=" 停止 ">
+            </form>
+            </table></td>
+            </tr>
+        </table>
+        </td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 id="btn-dropdowns" class="page-header" style="margin:auto 10% auto 3%">
+    &nbsp&nbsp&nbsp&nbsp&nbsp新建爬虫
+</h3>
+<!-- HTML表单 -->
+<div class="container" style="margin:7px 10% auto 2%">
+
+<form action="/update_strategy/{{item.ID}}" method="POST">
+    <!--策略名-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">&nbsp;&nbsp;策略名&nbsp;&nbsp;</span>
+        <input type="text" style="width: 60%;"  class="form-control" value="{{item.STRATEGY_NAME}}" aria-describedby="sizing-addon2"  name="STRATEGY_NAME">
+    </div><br>
+    <!--备注-->
+    <div class="input-group" style="padding-left:30px;">
+        <span class="input-group-addon" id="sizing-addon2">&nbsp;&nbsp;&nbsp;备注&nbsp;&nbsp;&nbsp;</span>
+        <input type="text" style="width: 60%;"  class="form-control" value="{{item.REMARK}}" aria-describedby="sizing-addon2"  name="REMARK">
+    </div><br>
+    <div style="padding-left:3%;">
+        <table width="10%" align="left">
+        <tr>
+        <td><table width="100%" align="center">
+        <input  type="submit" class="btn btn-info" value=" 提交 ">
+        </table></td>
+        <td><table width="100%" align="left">
+        <a class="btn btn btn-danger" href='{{ url_for("strategy_info") }}'>取消</a>
+        </table></td>
+        </tr>
+        </table>
+    </div>
+</form>
+
+
+</div>
+{% endblock %}
